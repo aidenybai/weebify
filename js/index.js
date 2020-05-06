@@ -37,7 +37,7 @@ const addEntry = (key) => {
             </div>   
           </p>
         </div>
-        <div class="ml-auto">
+        <div class="ml-auto mt-auto mb-auto">
           <button class="btn btn-warning" data-clipboard-target="#copy-${key}">
             copy
           </button>
@@ -81,7 +81,11 @@ document.querySelector('#text').addEventListener('input', () => {
 });
 
 document.querySelector('#copy').onclick = () => {
-  if (!document.querySelector('#output').innerText) return;
+  if (
+    !document.querySelector('#output').innerText ||
+    document.querySelector('#output').innerText === 'youw text wiww be shown hewe ʕ•ᴥ•ʔ'
+  )
+    return;
   const key = `text-${counter}-${makeid(20)}`;
   localStorage.setItem(key, document.querySelector('#output').innerText);
   addEntry(key);
