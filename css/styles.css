@@ -77,7 +77,7 @@ a {
 #text,
 #output {
   width: 100% !important;
-  min-height: -5vh !important;
+  min-height: 10vh !important;
   line-height: 150% !important;
   color: #232323 !important;
   outline: none !important;

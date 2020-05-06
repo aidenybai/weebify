@@ -74,6 +74,7 @@ const currentEntryCount = () => {
     counter++;
   }
 };
+
 const textareaResize = (id) => {
   let observe;
   if (window.attachEvent) {
@@ -118,7 +119,7 @@ document.querySelector('#copy').onclick = () => {
   )
     return;
   const key = `text-${counter}-${makeid(20)}`;
-  localStorage.setItem(key, document.querySelector('#output').innerText);
+  localStorage.setItem(key, document.querySelector('#output').value);
   addEntry(key);
   counter++;
 };

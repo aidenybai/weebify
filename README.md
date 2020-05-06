@@ -1,8 +1,12 @@
+# weebify
+
 <a href="https://covidheroes.net/">
-  <img src="img/favicon.png" width="50px" align="right" />
+  <img src="img/favicon.png" width="100px" align="right" />
 </a>
 
-# weebify
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/aidenybai/weebify)
+![https://img.shields.io/github/repo-size/aidenybai/weebify](https://img.shields.io/github/repo-size/aidenybai/weebify)
+![https://img.shields.io/github/license/aidenybai/weebify](https://img.shields.io/github/license/aidenybai/weebify)
 
 Frictionless text weebifier
 
@@ -26,3 +30,7 @@ Output
 ```
 i nyeed thewapy aftew cweating this (*^ω^)
 ```
+
+## Authors
+
+Created by @sarahberah and @aidenybai
