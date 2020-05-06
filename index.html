@@ -50,30 +50,32 @@
 
       <div class="form-group mb-3">
         <textarea
-          class="form-control"
+          class="form-control hover"
           id="text"
           placeholder="type hewe two weebify ywowouw text"
         ></textarea>
       </div>
 
-      <div class="card mb-1">
-        <div class="d-flex">
-          <div class="align-middle text-wrap">
-            <p class="card-title" id="output">
-              youw text wiww be shown hewe ʕ•ᴥ•ʔ
-            </p>
-          </div>
-          <div class="ml-auto mt-auto mb-auto">
-            <button id="copy" class="btn btn-warning" data-clipboard-target="#output">
-              copy
-            </button>
-          </div>
+      <div class="card mb-1 hover">
+        <div class="form-group mb-3">
+          <textarea
+            class="form-control"
+            id="output"
+            placeholder="youw text wiww be shown hewe ʕ•ᴥ•ʔ"
+            readonly
+          ></textarea>
         </div>
+
+        <br />
+        <button id="copy" class="btn btn-warning" data-clipboard-target="#output">
+          <i class="far fa-copy"></i> copy
+        </button>
       </div>
       <p class="text-center">wawnying: we awe nyot wiabwe fow the fwiends you may wose ʕ•ᴥ•ʔ</p>
       <br />
       <h1 class="text-center font-weight-bold">history</h1>
       <div id="history"></div>
+      <p class="text-center">cweated by <a href="https://aiden.codes/">aiden bai</a> (｡♥‿♥｡)</p>
     </div>
 
     <script

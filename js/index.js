@@ -3,6 +3,8 @@ let counter = 0;
 let deletionBuffer = 2;
 
 const init = async () => {
+  textareaResize('output');
+  textareaResize('text');
   for (const key of await createEntryArray()) {
     addEntry(key);
   }
@@ -28,32 +30,32 @@ const deleteKey = (key) => {
 
 const addEntry = (key) => {
   document.querySelector('#history').innerHTML = `
-    <div class="card mb-3" id="${key}">
+    <div class="card mb-3 hover" id="${key}">
       <div class="d-flex">
         <div>
-          <p class="card-text" style="text-align: left !important;">
-            <div class="form-group mb-3" id="copy-${key}">
-              ${localStorage.getItem(key)}
-            </div>   
-          </p>
+          <div class="input-group" id="copy-${key}">
+            ${localStorage.getItem(key)}
+          </div>  
         </div>
         <div class="ml-auto mt-auto mb-auto">
-          <button class="btn btn-warning" data-clipboard-target="#copy-${key}">
-            copy
-          </button>
-          <button class="btn btn-danger" onclick="deleteKey('${key}')" id="delete-${
+          <div class="container">
+            <button class="btn btn-warning hover" data-clipboard-target="#copy-${key}">
+              <i class="far fa-copy"></i> copy
+            </button>
+            <button class="btn btn-danger hover" onclick="deleteKey('${key}')" id="delete-${
     key.split('-')[1]
   }">
-            delete
-          </button>
+              <i class="far fa-trash-alt"></i> delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
   ${document.querySelector('#history').innerHTML}`;
 };
 
-const createEntryArray = () => {
-  return new Promise((res) => {
+const createEntryArray = () =>
+  new Promise((res) => {
     currentEntryCount();
     let entries = [];
     if (localStorage.length === 0) return;
@@ -65,13 +67,42 @@ const createEntryArray = () => {
     }
     res(entries);
   });
-};
 
 const currentEntryCount = () => {
   for (const key in localStorage) {
     if (!key.startsWith('text')) return;
     counter++;
   }
+};
+const textareaResize = (id) => {
+  let observe;
+  if (window.attachEvent) {
+    observe = (element, event, handler) => {
+      element.attachEvent(`on${event}`, handler);
+    };
+  } else {
+    observe = (element, event, handler) => {
+      element.addEventListener(event, handler, false);
+    };
+  }
+  const text = document.querySelector(`#${id}`);
+  function resize() {
+    if (text.scrollHeight > 1000) return;
+    text.style.height = 'auto';
+    text.style.height = `${text.scrollHeight}px`;
+  }
+  function delayedResize() {
+    window.setTimeout(resize, 0);
+  }
+  observe(text, 'change', resize);
+  observe(text, 'cut', delayedResize);
+  observe(text, 'paste', delayedResize);
+  observe(text, 'drop', delayedResize);
+  observe(text, 'keydown', delayedResize);
+
+  text.focus();
+  text.select();
+  resize();
 };
 
 document.querySelector('#text').addEventListener('input', () => {
@@ -82,8 +113,8 @@ document.querySelector('#text').addEventListener('input', () => {
 
 document.querySelector('#copy').onclick = () => {
   if (
-    !document.querySelector('#output').innerText ||
-    document.querySelector('#output').innerText === 'youw text wiww be shown hewe ʕ•ᴥ•ʔ'
+    !document.querySelector('#output').value ||
+    document.querySelector('#output').value === 'youw text wiww be shown hewe ʕ•ᴥ•ʔ'
   )
     return;
   const key = `text-${counter}-${makeid(20)}`;
