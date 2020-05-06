@@ -102,6 +102,11 @@ a {
   transform: translate(0px, -3px) !important;
 }
 
+#output:read-only {
+  background: rgba(255, 192, 203, 0.301) !important;
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
 .github-corner:hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out;
 }
