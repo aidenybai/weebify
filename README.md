@@ -1,2 +1,3 @@
-# owofy
-🥺 Fun APCSA project with @sarahberah
+# Weebify
+
+Next-gen service that helps you lose friends.
