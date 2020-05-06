@@ -8,6 +8,17 @@ const init = async () => {
   for (const key of await createEntryArray()) {
     addEntry(key);
   }
+  const urlParams = new URLSearchParams(window.location.search);
+  const val = urlParams.get('val');
+  if (val) {
+    document.querySelector('#text').value = decodeURIComponent(val);
+    const event = new Event('input', {
+      bubbles: true,
+      cancelable: true,
+    });
+
+    document.querySelector('#text').dispatchEvent(event);
+  }
 };
 
 const makeid = (length) => {
@@ -107,9 +118,19 @@ const textareaResize = (id) => {
 };
 
 document.querySelector('#text').addEventListener('input', () => {
-  document.querySelector('#output').innerText = window.weebify(
-    document.querySelector('#text').value
+  document.querySelector('#output').value = window.weebify(
+    document.querySelector('#text').value,
+    true
   );
+  document.querySelector('#tts').innerText = window.weebify(document.querySelector('#text').value);
+  if (history.pushState) {
+    let url = `${window.location.protocol}//${window.location.host}${
+      window.location.pathname
+    }?val=${encodeURIComponent(document.querySelector('#text').value)}`;
+    if (document.querySelector('#text').value.length === 0)
+      url = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
+    window.history.pushState({ path: url }, '', url);
+  }
 });
 
 document.querySelector('#copy').onclick = () => {
@@ -122,6 +143,11 @@ document.querySelector('#copy').onclick = () => {
   localStorage.setItem(key, document.querySelector('#output').value);
   addEntry(key);
   counter++;
+};
+
+document.querySelector('#speak').onclick = () => {
+  $().articulate('setVoice', 'name', 'Microsoft Huihui Desktop - Chinese (Simplified)');
+  $('#tts').articulate('speak');
 };
 
 init();

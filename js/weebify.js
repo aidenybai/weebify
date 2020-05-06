@@ -19,7 +19,7 @@ const randomEmoticon = () => {
   return emoticons[Math.floor(Math.random() * emoticons.length)];
 };
 
-const weebify = (text) => {
+const weebify = (text, emote = false) => {
   // const chance = () => Math.floor(Math.random() * 10) + 1 === 1;
   text = text.replace(/(?:l|r)/g, 'w'); // Replace l and r into w
   text = text.replace(/(?:L|R)/g, 'W'); // Replace L and R into W
@@ -32,7 +32,7 @@ const weebify = (text) => {
   //   text[text.indexOf(word)] = `${word}${chance() ? ' (owo) ' : ''}`;
   // });
   // text = text.join(' ');
-  text += ` ${randomEmoticon()} `;
+  if (emote) text += ` ${randomEmoticon()} `;
   // text = text.replace(/!+/g, ` ${randomEmoticon()} `); // Append random emoticon
   // text = text.replace(/\.+/g, ` ${randomEmoticon()} `); // Append random emoticon
 
