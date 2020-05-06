@@ -26,8 +26,9 @@ const weebify = (text) => {
   text = text.replace(/N([aeiou])/g, 'Ny$1'); // N followed by random lowercase letter replaced to Ny
   text = text.replace(/N([AEIOU])/g, 'NY$1'); // N followed by random uppercase letter replaced to NY
   text = text.replace(/ove/g, 'uv'); // "-ove" is changed to "-uv"
-  text = text.replace(/!+/g, ` ${randomEmoticon()} `); // Append random emoticon
-  text = text.replace(/\.+/g, ` ${randomEmoticon()} `); // Append random emoticon
+  text += ` ${randomEmoticon()} `;
+  // text = text.replace(/!+/g, ` ${randomEmoticon()} `); // Append random emoticon
+  // text = text.replace(/\.+/g, ` ${randomEmoticon()} `); // Append random emoticon
 
   return text;
 };

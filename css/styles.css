@@ -58,7 +58,7 @@ input:focus {
 textarea {
   width: 100% !important;
   height: 40vh;
-  min-height: 40vh !important;
+  min-height: 20vh !important;
   line-height: 150% !important;
   color: #232323 !important;
   outline: none !important;
